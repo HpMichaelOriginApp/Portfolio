@@ -27,9 +27,9 @@ const CONFIG = {
 ------------------------------------------------------------ */
 const FEATURED = [
   {
-    youtubeId: "j-K8x9-DFgA",
+    youtubeId: "sFqe0MSV3Os",
     category: "Long Form",
-    caption: "<b>Unchained</b>: a long-form edit that converted 13 small businesses into sign-ups.",
+    caption: "<b>Marvella Visuals</b>: a product-showcase edit built to sell through organic, dropshipping-style content.",
   },
   {
     youtubeId: "ES2K6upVleI",
@@ -45,6 +45,16 @@ const FEATURED = [
     youtubeId: "ZHCbqjEL0g8",
     category: "Long Form",
     caption: "<b>Angell K, gut health</b>: a long-form explainer edit that makes the science of the gut clear and easy to follow.",
+  },
+  {
+    youtubeId: "9ao9nTWHqF8",
+    category: "Long Form",
+    caption: "<b>StrideDaily</b>: a long-form supplement promo edited to build everyday energy and recovery into a clear reason to buy.",
+  },
+  {
+    youtubeId: "j-K8x9-DFgA",
+    category: "Long Form",
+    caption: "<b>Unchained</b>: a long-form edit that converted 13 small businesses into sign-ups.",
   },
   {
     youtubeId: "bajka5IqEVU",
@@ -69,10 +79,10 @@ const FEATURED = [
 ------------------------------------------------------------ */
 const MORE_WORK = [
   {
-    youtubeId: "4gH9JgFsc0Q",
+    youtubeId: "owmnHh1Rzq0",
     category: "Short Form",
     vertical: true,
-    caption: "<b>Michael, Fraud Watch 360</b>: a launch short that drove 50+ sign-ups for a brand-new startup.",
+    caption: "<b>RAM Construction</b>: a site-showcase short cut to make on-the-ground project progress look sharp and shareable.",
   },
   {
     youtubeId: "mF2q6If4NUQ",
@@ -105,6 +115,12 @@ const MORE_WORK = [
     caption: "<b>Stone FAQ</b>: an explainer short answering a common customer question.",
   },
   {
+    youtubeId: "BTwvn0d1a3o",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>StrideDaily</b>: a supplement promo short cut to sell everyday energy and recovery in under a minute.",
+  },
+  {
     youtubeId: "BNDLaEQe70w",
     category: "Short Form",
     vertical: true,
@@ -115,6 +131,12 @@ const MORE_WORK = [
     category: "Short Form",
     vertical: true,
     caption: "<b>Brand sample reel</b>: a short-form cut built to stop the scroll.",
+  },
+  {
+    youtubeId: "4gH9JgFsc0Q",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>Michael, Fraud Watch 360</b>: a launch short that drove 50+ sign-ups for a brand-new startup.",
   },
   {
     youtubeId: "b0uCGRzNRgo",

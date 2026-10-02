@@ -622,6 +622,27 @@ section { padding-block: clamp(4.5rem, 11vw, 9rem); position: relative; }
   -webkit-backdrop-filter: blur(8px);
 }
 .facade iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: 4; }
+/* Self-hosted <video> tiles behave like the poster before play, then lift above
+   the overlay and show the full frame once playing. */
+.facade__video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  background: #000;
+  transition: transform 0.6s var(--ease), filter 0.4s var(--ease);
+}
+.facade:hover .facade__video { transform: scale(1.05); filter: brightness(1.05); }
+.facade.is-playing .facade__video { z-index: 5; object-fit: contain; }
+/* A vertical (9:16) tile dropped into the long-form (16:9) row stays centered
+   and sized so it reads as intentional next to the wide tiles. */
+.grid--long .facade--vertical { max-width: 300px; margin-inline: auto; }
+
+/* Client testimonials: a landscape cut and a vertical reel side by side,
+   each centered in its column and capped so the pairing stays balanced. */
+.grid--testi { grid-template-columns: 1fr; justify-items: center; }
+@media (min-width: 820px) { .grid--testi { grid-template-columns: repeat(2, 1fr); align-items: start; } }
+.grid--testi .tile { width: 100%; max-width: 560px; }
+.grid--testi .facade--vertical { max-width: 300px; margin-inline: auto; }
 /* While a tile is playing, hide its poster + controls so only the video shows */
 .facade.is-playing .facade__poster,
 .facade.is-playing .facade__shade,

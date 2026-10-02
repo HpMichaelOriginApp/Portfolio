@@ -14,6 +14,21 @@ const CONFIG = {
 };
 
 /* ------------------------------------------------------------
+   TESTIMONIALS = client testimonial videos, shown in their own spot
+   at the very top of the work area. Self-hosted (videoUrl) items with a
+   corner badge. The whole section auto-hides while this array is empty.
+------------------------------------------------------------ */
+const TESTIMONIALS = [
+  {
+    videoUrl:
+      "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/Adetutu%20Michael%20Adenuga%20Testimonial.mp4",
+    vertical: false,
+    badge: "Client testimonial",
+    caption: "<b>Adetutu Olatawura</b>: a client testimonial on the results of working together.",
+  },
+];
+
+/* ------------------------------------------------------------
    FEATURED = the 16:9 WIDE ROW (long-form pieces + landscape clips), in display order.
    ------------------------------------------------------------
    Each tile needs:
@@ -78,6 +93,20 @@ const FEATURED = [
      caption: "<b>Client, project</b>: what the edit accomplished." },
 ------------------------------------------------------------ */
 const MORE_WORK = [
+  {
+    videoUrl:
+      "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/Don't%20just%20pay%20and%20leave.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>Don't just pay and leave</b>: a hook-first short that stops the scroll in the opening line.",
+  },
+  {
+    videoUrl:
+      "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/First%20cleaning%20in%203%20days.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>First cleaning in 3 days</b>: a fast-paced short cut to turn a service offer into bookings.",
+  },
   {
     youtubeId: "owmnHh1Rzq0",
     category: "Short Form",
@@ -225,6 +254,63 @@ function buildTile(item) {
   const facade = document.createElement("div");
   facade.className = "facade" + (item.vertical ? " facade--vertical" : "");
 
+  // Self-hosted / direct-URL video (e.g. a client reel exported to a CDN).
+  // Uses a <video> element instead of a YouTube facade. Set videoUrl to the
+  // .mp4 (and optionally poster: an image in /assets) in the data arrays.
+  if (item.videoUrl) {
+    const vAlt = item.caption.replace(/<[^>]+>/g, "");
+    const video = document.createElement("video");
+    video.className = "facade__video";
+    // Without a poster image, "#t=1" nudges the browser to paint a ~1s frame
+    // as the still shown before playback.
+    video.src = item.poster ? item.videoUrl : item.videoUrl + "#t=1";
+    if (item.poster) video.poster = item.poster;
+    video.preload = "metadata";
+    video.playsInline = true;
+    video.setAttribute("aria-label", vAlt);
+
+    const vShade = document.createElement("div");
+    vShade.className = "facade__shade";
+
+    const vPlay = document.createElement("button");
+    vPlay.className = "facade__play";
+    vPlay.type = "button";
+    vPlay.setAttribute("aria-label", "Play video: " + vAlt);
+
+    const vStop = () => {
+      video.pause();
+      video.removeAttribute("controls");
+      facade.classList.remove("is-playing");
+    };
+    const vActivate = () => {
+      stopActiveVideo();            // one video at a time, site-wide
+      video.setAttribute("controls", "");
+      facade.classList.add("is-playing");
+      const p = video.play();
+      if (p && p.catch) p.catch(() => {});
+      video.focus();
+      activeStop = vStop;
+    };
+    vPlay.addEventListener("click", vActivate);
+    facade.addEventListener("click", (e) => {
+      if (e.target !== vPlay && e.target !== video) vActivate();
+    });
+
+    facade.append(video, vShade, vPlay);
+    if (item.badge) {
+      const vBadge = document.createElement("span");
+      vBadge.className = "facade__badge";
+      vBadge.textContent = item.badge;
+      facade.appendChild(vBadge);
+    }
+
+    const vCaption = document.createElement("p");
+    vCaption.className = "tile__caption";
+    vCaption.innerHTML = item.caption;
+    tile.append(facade, vCaption);
+    return tile;
+  }
+
   const img = document.createElement("img");
   img.className = "facade__poster";
   img.src = posterFor(item);
@@ -367,6 +453,11 @@ function wireGlow() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Client testimonials get their own spot at the top; hide it if empty.
+  renderGrid("testimonial-grid", TESTIMONIALS);
+  const testiSection = document.getElementById("testimonials");
+  if (testiSection) testiSection.hidden = TESTIMONIALS.length === 0;
+
   // Two aspect-based grids: 16:9 pieces (wide row) first, 9:16 reels below.
   renderGrid("work-long-grid", FEATURED);
   renderGrid("work-short-grid", MORE_WORK);

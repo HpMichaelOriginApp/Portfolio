@@ -632,7 +632,13 @@ section { padding-block: clamp(4.5rem, 11vw, 9rem); position: relative; }
   transition: transform 0.6s var(--ease), filter 0.4s var(--ease);
 }
 .facade:hover .facade__video { transform: scale(1.05); filter: brightness(1.05); }
-.facade.is-playing .facade__video { z-index: 5; object-fit: contain; }
+.facade.is-playing .facade__video { z-index: 5; object-fit: contain; transform: none; }
+/* While playing, no transforms on the tile or video, so the browser can take the
+   video fullscreen cleanly (ancestor transforms break native fullscreen in Chrome). */
+.facade.is-playing,
+.facade.is-playing:hover { transform: none; }
+/* Fill the screen edge-to-edge when the video is fullscreened. */
+.facade__video:fullscreen { width: 100vw; height: 100vh; object-fit: contain; background: #000; }
 /* A vertical (9:16) tile dropped into the long-form (16:9) row stays centered
    and sized so it reads as intentional next to the wide tiles. */
 .grid--long .facade--vertical { max-width: 300px; margin-inline: auto; }
@@ -804,7 +810,9 @@ section { padding-block: clamp(4.5rem, 11vw, 9rem); position: relative; }
   transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
   will-change: opacity, transform;
 }
-.reveal.is-in { opacity: 1; transform: none; }
+/* Drop the compositing hint once revealed: a lingering will-change/transform on
+   an ancestor makes Chrome render fullscreen video clipped instead of filling. */
+.reveal.is-in { opacity: 1; transform: none; will-change: auto; }
 
 /* ============================================================
    REDUCED MOTION

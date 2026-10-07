@@ -42,6 +42,16 @@ const TESTIMONIALS = [
 ------------------------------------------------------------ */
 const FEATURED = [
   {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/dog-dental-care.mp4",
+    category: "Long Form",
+    caption: "<b>Dog dental care</b>: a long-form explainer on preventing serious dental problems in dogs.",
+  },
+  {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/robs-401k-business.mp4",
+    category: "Long Form",
+    caption: "<b>ROBS & your 401(k)</b>: a long-form explainer on using retirement funds to buy a business.",
+  },
+  {
     youtubeId: "sFqe0MSV3Os",
     category: "Long Form",
     caption: "<b>Marvella Visuals</b>: a product-showcase edit built to sell through organic, dropshipping-style content.",

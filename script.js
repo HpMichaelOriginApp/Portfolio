@@ -57,6 +57,21 @@ const FEATURED = [
     caption: "<b>ROBS & your 401(k)</b>: a long-form explainer on using retirement funds to buy a business.",
   },
   {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/New%20portfolio/Airbnb%20Blueprint%20-%2016x9%202K.mp4",
+    category: "Long Form",
+    caption: "<b>Airbnb Blueprint</b>: a long-form edit laying out a step-by-step Airbnb business blueprint.",
+  },
+  {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/New%20portfolio/Ethical%20Creators%20-%2016x9%202K.mp4",
+    category: "Long Form",
+    caption: "<b>Ethical Creators</b>: a long-form edit on growing as a creator the ethical way.",
+  },
+  {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/New%20portfolio/Life%20Is%20a%20Video%20Game%20-%2016x9%202K.mp4",
+    category: "Long Form",
+    caption: "<b>Life Is a Video Game</b>: a long-form narrative edit framing life as a video game.",
+  },
+  {
     youtubeId: "sFqe0MSV3Os",
     category: "Long Form",
     caption: "<b>Marvella Visuals</b>: a product-showcase edit built to sell through organic, dropshipping-style content.",

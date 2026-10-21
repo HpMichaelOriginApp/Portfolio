@@ -42,6 +42,11 @@ const TESTIMONIALS = [
 ------------------------------------------------------------ */
 const FEATURED = [
   {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/showreel-2026.mp4",
+    category: "Long Form",
+    caption: "<b>Showreel 2026</b>: a fast-cut highlight reel of recent long- and short-form work.",
+  },
+  {
     videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/dog-dental-care.mp4",
     category: "Long Form",
     caption: "<b>Dog dental care</b>: a long-form explainer on preventing serious dental problems in dogs.",

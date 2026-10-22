@@ -306,6 +306,26 @@ function stopActiveVideo() {
   }
 }
 
+// Lazy-load video posters: set each poster only as its tile nears the viewport,
+// so a page full of videos doesn't fetch 30+ images up front on slow connections.
+const posterObserver =
+  "IntersectionObserver" in window
+    ? new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            const v = e.target;
+            if (v.dataset.poster) {
+              v.poster = v.dataset.poster;
+              v.removeAttribute("data-poster");
+            }
+            obs.unobserve(v);
+          });
+        },
+        { rootMargin: "400px 0px" }
+      )
+    : null;
+
 function buildTile(item) {
   const tile = document.createElement("article");
   tile.className = "tile";
@@ -329,9 +349,18 @@ function buildTile(item) {
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");
-    video.poster = item.poster || `assets/posters/${slug}.jpg`;
+    const posterPath = item.poster || `assets/posters/${slug}.jpg`;
+    // Lazy-load the poster (and never preload the video) so many videos stay
+    // light on slow connections: the poster loads as the tile nears the viewport,
+    // and the video itself streams only when tapped.
+    if (posterObserver) {
+      video.dataset.poster = posterPath;
+      posterObserver.observe(video);
+    } else {
+      video.poster = posterPath;
+    }
     video.src = item.videoUrl;
-    video.preload = "metadata";
+    video.preload = "none";
     video.playsInline = true;
     video.setAttribute("aria-label", vAlt);
 

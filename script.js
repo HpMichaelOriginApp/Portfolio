@@ -138,6 +138,36 @@ const MORE_WORK = [
     caption: "<b>First cleaning in 3 days</b>: a fast-paced short cut to turn a service offer into bookings.",
   },
   {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/Airbnb%20Blueprint%20-%209x16.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>Airbnb Blueprint</b>: a vertical short cut from the Airbnb blueprint piece.",
+  },
+  {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/Ethical%20Creators%20-%209x16.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>Ethical Creators</b>: a vertical short on growing as an ethical creator.",
+  },
+  {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/Life%20Is%20a%20Video%20Game%20-%209x16.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>Life Is a Video Game</b>: a vertical short framing life as a video game.",
+  },
+  {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/New%20portfolio/People%20Buy%20to%20Save%20Time%20-%209x16.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>People Buy to Save Time</b>: a vertical short on why saving time sells.",
+  },
+  {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/New%20portfolio/Personal%20Brands%20-%209x16.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>Personal Brands</b>: a vertical short on building a personal brand.",
+  },
+  {
     videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/ram-construction.mp4",
     category: "Short Form",
     vertical: true,
@@ -291,10 +321,16 @@ function buildTile(item) {
     const vAlt = item.caption.replace(/<[^>]+>/g, "");
     const video = document.createElement("video");
     video.className = "facade__video";
-    // Without a poster image, "#t=1" nudges the browser to paint a ~1s frame
-    // as the still shown before playback.
-    video.src = item.poster ? item.videoUrl : item.videoUrl + "#t=1";
-    if (item.poster) video.poster = item.poster;
+    // Real poster image so the tile shows a still instantly instead of a black
+    // frame while the video streams. Generated thumbnails live in assets/posters,
+    // named by a slug of the video filename; an explicit item.poster overrides it.
+    const slug = decodeURIComponent(item.videoUrl.split("/").pop())
+      .replace(/\.[^.]+$/, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+    video.poster = item.poster || `assets/posters/${slug}.jpg`;
+    video.src = item.videoUrl;
     video.preload = "metadata";
     video.playsInline = true;
     video.setAttribute("aria-label", vAlt);

@@ -505,8 +505,9 @@ function wireCtas() {
 
 function wireScrollReveal() {
   const els = document.querySelectorAll(".reveal");
+  const revealAll = () => els.forEach((el) => el.classList.add("is-in"));
   if (!("IntersectionObserver" in window)) {
-    els.forEach((el) => el.classList.add("is-in"));
+    revealAll();
     return;
   }
   const io = new IntersectionObserver(
@@ -518,9 +519,16 @@ function wireScrollReveal() {
         }
       });
     },
-    { rootMargin: "0px 0px -10% 0px", threshold: 0.08 }
+    // threshold:0 — reveal as soon as ANY part of a section enters the viewport.
+    // A percentage threshold can never be met by a section taller than the
+    // screen (e.g. the work grid), which would leave it — and everything after
+    // it — permanently invisible. Must stay 0.
+    { rootMargin: "0px 0px -5% 0px", threshold: 0 }
   );
   els.forEach((el) => io.observe(el));
+  // Fail-safe: content must never stay hidden. If anything hasn't revealed a
+  // few seconds after load (observer edge case, odd browser), show it anyway.
+  setTimeout(revealAll, 3000);
 }
 
 function wireStickyNav() {

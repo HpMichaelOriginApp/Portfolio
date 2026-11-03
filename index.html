@@ -28,7 +28,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
-  <link rel="stylesheet" href="styles.css?v=20261022c" />
+  <link rel="stylesheet" href="styles.css?v=20261103" />
 </head>
 <body>
   <a class="skip-link" href="#work">Skip to work</a>
@@ -44,6 +44,11 @@
       </div>
 
       <div class="hero__content">
+        <span class="hero__avatar">
+          <img src="assets/michael.jpg" alt="Portrait of Michael Adenuga"
+               onerror="this.closest('.hero__avatar').classList.add('hero__avatar--fallback'); this.remove();" />
+          <span class="hero__avatar-initials" aria-hidden="true">MA</span>
+        </span>
         <span class="hero__eyebrow">Portfolio &middot; Video Editor &middot; Content Strategist</span>
         <h1 class="hero__name">Michael Adenuga</h1>
         <p class="hero__line">I turn expertise into content people actually watch, built around one goal: <em>attention.</em></p>
@@ -65,6 +70,7 @@
         <nav class="nav__links" aria-label="Primary">
           <a href="#work">Work</a>
           <a href="#about">About</a>
+          <a href="#testimonials">Testimonials</a>
           <a href="#contact">Contact</a>
         </nav>
         <a class="btn btn--cta nav__cta" data-cta href="#contact">Work with me</a>
@@ -219,6 +225,6 @@
     <span>© <span id="year"></span></span>
   </footer>
 
-  <script src="script.js?v=20261022c"></script>
+  <script src="script.js?v=20261103"></script>
 </body>
 </html>

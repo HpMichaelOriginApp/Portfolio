@@ -708,6 +708,69 @@ section { padding-block: clamp(4.5rem, 11vw, 9rem); position: relative; }
 .tile__caption { color: var(--muted); font-size: 0.98rem; line-height: 1.45; padding-inline: 0.1rem; }
 .tile__caption b { color: var(--text); font-weight: 650; }
 
+/* Per-video Share: copies a direct "#v-<slug>" link (or opens the share
+   sheet on phones). Sits just under the caption. The flex gap on .tile
+   already spaces it, so pull it up a touch to group it with the caption. */
+.tile__foot { margin-top: -0.55rem; padding-inline: 0.1rem; }
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.34rem 0.8rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.15s;
+}
+.share-btn:hover {
+  color: var(--text);
+  border-color: rgba(var(--glow), 0.55);
+  background: var(--surface);
+}
+.share-btn:active { transform: scale(0.96); }
+.share-btn svg { width: 15px; height: 15px; }
+
+/* The tile a shared link points at: a brief glowing ring to draw the eye. */
+.tile.is-shared .facade {
+  box-shadow: 0 0 0 3px rgba(var(--glow), 0.9), 0 0 42px 2px rgba(var(--glow), 0.45);
+  animation: sharePulse 1.1s ease-out 2;
+}
+@keyframes sharePulse {
+  0% { box-shadow: 0 0 0 3px rgba(var(--glow), 0.9), 0 0 0 0 rgba(var(--glow), 0.6); }
+  100% { box-shadow: 0 0 0 3px rgba(var(--glow), 0.9), 0 0 0 16px rgba(var(--glow), 0); }
+}
+
+/* Toast shown after copying a link */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translate(-50%, 20px);
+  max-width: min(90vw, 440px);
+  background: rgba(18, 20, 26, 0.97);
+  color: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.72rem 1.15rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  box-shadow: 0 18px 44px -14px rgba(0, 0, 0, 0.75);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 1000;
+}
+.toast.is-show { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) {
+  .tile.is-shared .facade { animation: none; }
+}
+
 .work__cta { text-align: center; margin-top: clamp(2.5rem, 6vw, 4rem); }
 
 /* ============================================================

@@ -326,10 +326,122 @@ const posterObserver =
       )
     : null;
 
+/* ------------------------------------------------------------
+   SHARE / DEEP-LINK
+   Every tile gets a stable id ("v-<slug>") so a single video can be
+   linked to directly. The Share button copies that deep link (or opens
+   the native share sheet on phones); opening the link scrolls to and
+   highlights that exact video.
+------------------------------------------------------------ */
+// Stable, unique slug for a tile: filename for self-hosted clips, the id
+// for YouTube. Must stay in sync with the poster-filename slug.
+function slugFor(item) {
+  if (item.videoUrl) {
+    return decodeURIComponent(item.videoUrl.split("/").pop())
+      .replace(/\.[^.]+$/, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+  if (item.youtubeId) return "yt-" + item.youtubeId.toLowerCase();
+  return "";
+}
+
+// The shareable URL for a tile: current site + "#v-<slug>". Keeps the
+// current base path (works on Netlify root and GitHub Pages subpaths).
+function videoShareUrl(vid) {
+  const base = location.href.split("#")[0].replace(/index\.html?$/, "");
+  return base + "#v-" + vid;
+}
+
+function copyToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    return navigator.clipboard.writeText(text);
+  }
+  return new Promise((resolve, reject) => {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      ok ? resolve() : reject();
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+
+let toastTimer = null;
+function showToast(msg) {
+  let t = document.getElementById("toast");
+  if (!t) {
+    t = document.createElement("div");
+    t.id = "toast";
+    t.className = "toast";
+    t.setAttribute("role", "status");
+    t.setAttribute("aria-live", "polite");
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  // force reflow so re-triggering the animation works on rapid clicks
+  void t.offsetWidth;
+  t.classList.add("is-show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("is-show"), 2800);
+}
+
+async function shareVideo(vid, title) {
+  const url = videoShareUrl(vid);
+  const coarse =
+    window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+  // Phones (and tablets): native share sheet so the link can go straight to
+  // WhatsApp, email, etc. Desktop: copy to clipboard to paste into forms.
+  if (navigator.share && coarse) {
+    try {
+      await navigator.share({ title: title, text: title, url: url });
+      return;
+    } catch (err) {
+      if (err && err.name === "AbortError") return; // user dismissed the sheet
+      // otherwise fall through to copying
+    }
+  }
+  copyToClipboard(url)
+    .then(() => showToast("Link copied — paste it anywhere"))
+    .catch(() => showToast(url));
+}
+
+function makeShareRow(item, vid) {
+  const foot = document.createElement("div");
+  foot.className = "tile__foot";
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "share-btn";
+  btn.setAttribute("aria-label", "Share a direct link to this video");
+  btn.innerHTML =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Share</span>';
+  const title = item.caption.replace(/<[^>]+>/g, "");
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    shareVideo(vid, title);
+  });
+  foot.appendChild(btn);
+  return foot;
+}
+
 function buildTile(item) {
   const tile = document.createElement("article");
   tile.className = "tile";
   tile.dataset.cat = item.category;
+  const vid = slugFor(item);
+  if (vid) {
+    tile.id = "v-" + vid;
+    tile.dataset.vid = vid;
+  }
 
   const facade = document.createElement("div");
   facade.className = "facade" + (item.vertical ? " facade--vertical" : "");
@@ -344,12 +456,7 @@ function buildTile(item) {
     // Real poster image so the tile shows a still instantly instead of a black
     // frame while the video streams. Generated thumbnails live in assets/posters,
     // named by a slug of the video filename; an explicit item.poster overrides it.
-    const slug = decodeURIComponent(item.videoUrl.split("/").pop())
-      .replace(/\.[^.]+$/, "")
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-    const posterPath = item.poster || `assets/posters/${slug}.jpg`;
+    const posterPath = item.poster || `assets/posters/${vid}.jpg`;
     // Lazy-load the poster (and never preload the video) so many videos stay
     // light on slow connections: the poster loads as the tile nears the viewport,
     // and the video itself streams only when tapped.
@@ -403,6 +510,7 @@ function buildTile(item) {
     vCaption.className = "tile__caption";
     vCaption.innerHTML = item.caption;
     tile.append(facade, vCaption);
+    if (vid) tile.append(makeShareRow(item, vid));
     return tile;
   }
 
@@ -468,6 +576,7 @@ function buildTile(item) {
   caption.innerHTML = item.caption;
 
   tile.append(facade, caption);
+  if (vid) tile.append(makeShareRow(item, vid));
   return tile;
 }
 
@@ -555,6 +664,42 @@ function wireGlow() {
     .forEach((el) => el.addEventListener("pointermove", move));
 }
 
+// Reveal a tile's ancestor sections immediately (don't wait for scroll) so a
+// deep-linked video is never hidden behind the reveal animation or a filter.
+function revealAncestors(el) {
+  let n = el;
+  while (n) {
+    if (n.classList && n.classList.contains("reveal")) n.classList.add("is-in");
+    n = n.parentElement;
+  }
+}
+
+// When the page opens at "#v-<slug>", scroll to that exact video and give it a
+// brief highlight so the visitor knows which one was shared.
+function focusSharedVideo() {
+  const hash = location.hash;
+  if (!hash || hash.indexOf("#v-") !== 0) return;
+  const tile = document.getElementById(hash.slice(1));
+  if (!tile) return;
+  revealAncestors(tile);
+  tile.hidden = false; // show even if a category filter is active
+  // Load its poster right away rather than waiting for the lazy observer.
+  const v = tile.querySelector("[data-poster]");
+  if (v) {
+    v.poster = v.dataset.poster;
+    v.removeAttribute("data-poster");
+  }
+  // Let the reveal transition settle, then scroll with a sticky-nav offset.
+  setTimeout(() => {
+    const nav = document.getElementById("nav");
+    const offset = (nav ? nav.getBoundingClientRect().height : 0) + 18;
+    const top = window.pageYOffset + tile.getBoundingClientRect().top - offset;
+    window.scrollTo({ top: Math.max(top, 0), behavior: "smooth" });
+    tile.classList.add("is-shared");
+    setTimeout(() => tile.classList.remove("is-shared"), 3400);
+  }, 350);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Client testimonials get their own spot at the top; hide it if empty.
   renderGrid("testimonial-grid", TESTIMONIALS);
@@ -573,4 +718,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const yr = document.getElementById("year");
   if (yr) yr.textContent = new Date().getFullYear();
+
+  // Deep link to a specific video, on first load and on later hash changes.
+  focusSharedVideo();
+  window.addEventListener("hashchange", focusSharedVideo);
 });

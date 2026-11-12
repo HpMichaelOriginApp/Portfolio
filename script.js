@@ -124,6 +124,18 @@ const FEATURED = [
 ------------------------------------------------------------ */
 const MORE_WORK = [
   {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/Let's%20do%20this%20braid%20out.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>Angell K, braid out</b>: a beauty-tutorial short cut to hold attention through to the final reveal.",
+  },
+  {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/Let's%20get%20into%20this%20mango%20matcha%20using%20Matcha%20DNA.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>Angell K, mango matcha</b>: a recipe short that makes a sponsored drink feel native and binge-worthy.",
+  },
+  {
     videoUrl:
       "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/Don't%20just%20pay%20and%20leave.mp4",
     category: "Short Form",

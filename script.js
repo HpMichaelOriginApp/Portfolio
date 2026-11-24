@@ -87,11 +87,6 @@ const FEATURED = [
     caption: "<b>Angell K, gut health</b>: a long-form how-to edit that turns four simple steps into an easy-to-follow wellness guide.",
   },
   {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/gut-health-importance.mp4",
-    category: "Long Form",
-    caption: "<b>Angell K, gut health</b>: a long-form explainer edit that makes the science of the gut clear and easy to follow.",
-  },
-  {
     youtubeId: "9ao9nTWHqF8",
     category: "Long Form",
     caption: "<b>StrideDaily</b>: a long-form supplement promo edited to build everyday energy and recovery into a clear reason to buy.",
@@ -105,11 +100,6 @@ const FEATURED = [
     videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/creg-acton.mp4",
     category: "Long Form",
     caption: "<b>Creg Acton</b>: a talking-head edit that keeps a personal brand sharp on camera.",
-  },
-  {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/tom-bolan.mp4",
-    category: "Long Form",
-    caption: "<b>Tom Bolan</b>: a talking-head edit paced to hold attention start to finish.",
   },
 ];
 
@@ -192,34 +182,10 @@ const MORE_WORK = [
     caption: "<b>Coconu</b>: a talking-head brand short built to sell without feeling like an ad.",
   },
   {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/coconu-tiktok.mp4",
-    category: "Short Form",
-    vertical: true,
-    caption: "<b>Coconu, TikTok-style</b>: a fast, native-feeling cut made for the For You feed.",
-  },
-  {
-    youtubeId: "lzibABBw4lQ",
-    category: "Short Form",
-    vertical: true,
-    caption: "<b>Granite vs. Quartz</b>: a comparison short that helps buyers choose.",
-  },
-  {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/stone-faq.mp4",
-    category: "Short Form",
-    vertical: true,
-    caption: "<b>Stone FAQ</b>: an explainer short answering a common customer question.",
-  },
-  {
     youtubeId: "BTwvn0d1a3o",
     category: "Short Form",
     vertical: true,
     caption: "<b>StrideDaily</b>: a supplement promo short cut to sell everyday energy and recovery in under a minute.",
-  },
-  {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/stonework-field.mp4",
-    category: "Short Form",
-    vertical: true,
-    caption: "<b>Stonework in the field</b>: a product short for a countertop brand.",
   },
   {
     youtubeId: "fd-5IefQShE",
@@ -246,12 +212,6 @@ const MORE_WORK = [
     caption: "<b>Delta House</b>: a short-form brand cut.",
   },
   {
-    youtubeId: "PWozJHyVILE",
-    category: "Short Form",
-    vertical: true,
-    caption: "<b>Waterfall edges</b>: a how-it's-done short for a stone fabrication brand.",
-  },
-  {
     videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/steve-harvey.mp4",
     category: "Short Form",
     vertical: true,
@@ -262,12 +222,6 @@ const MORE_WORK = [
     category: "Short Form",
     vertical: true,
     caption: "<b>Make Gains</b>: a fitness short cut to keep energy high and viewers watching.",
-  },
-  {
-    youtubeId: "AvreK4dcKCI",
-    category: "Short Form",
-    vertical: true,
-    caption: "<b>Behind the scenes</b>: a workshop short that builds trust in the brand.",
   },
   {
     videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/seizure-prevention.mp4",

@@ -47,14 +47,9 @@ const FEATURED = [
     caption: "<b>Showreel 2026</b>: a fast-cut highlight reel of recent long- and short-form work.",
   },
   {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/dog-dental-care.mp4",
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/unchained.mp4",
     category: "Long Form",
-    caption: "<b>Dog dental care</b>: a long-form explainer on preventing serious dental problems in dogs.",
-  },
-  {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/robs-401k-business.mp4",
-    category: "Long Form",
-    caption: "<b>ROBS & your 401(k)</b>: a long-form explainer on using retirement funds to buy a business.",
+    caption: "<b>Unchained</b>: a long-form edit that converted 13 small businesses into sign-ups.",
   },
   {
     videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/New%20portfolio/Airbnb%20Blueprint%20-%2016x9%202K.mp4",
@@ -72,14 +67,14 @@ const FEATURED = [
     caption: "<b>Life Is a Video Game</b>: a long-form narrative edit framing life as a video game.",
   },
   {
-    youtubeId: "sFqe0MSV3Os",
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/dog-dental-care.mp4",
     category: "Long Form",
-    caption: "<b>Marvella Visuals</b>: a product-showcase edit built to sell through organic, dropshipping-style content.",
+    caption: "<b>Dog dental care</b>: a long-form explainer on preventing serious dental problems in dogs.",
   },
   {
-    youtubeId: "ES2K6upVleI",
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/robs-401k-business.mp4",
     category: "Long Form",
-    caption: "<b>Long-form ad</b>: a paid spot edited to hold attention all the way to the call to action.",
+    caption: "<b>ROBS & your 401(k)</b>: a long-form explainer on using retirement funds to buy a business.",
   },
   {
     videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/gut-health-4-ways.mp4",
@@ -92,9 +87,14 @@ const FEATURED = [
     caption: "<b>StrideDaily</b>: a long-form supplement promo edited to build everyday energy and recovery into a clear reason to buy.",
   },
   {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/unchained.mp4",
+    youtubeId: "ES2K6upVleI",
     category: "Long Form",
-    caption: "<b>Unchained</b>: a long-form edit that converted 13 small businesses into sign-ups.",
+    caption: "<b>Long-form ad</b>: a paid spot edited to hold attention all the way to the call to action.",
+  },
+  {
+    youtubeId: "sFqe0MSV3Os",
+    category: "Long Form",
+    caption: "<b>Marvella Visuals</b>: a product-showcase edit built to sell through organic, dropshipping-style content.",
   },
   {
     videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/creg-acton.mp4",
@@ -114,24 +114,10 @@ const FEATURED = [
 ------------------------------------------------------------ */
 const MORE_WORK = [
   {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/Let's%20do%20this%20braid%20out.mp4",
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/fraud-watch-360.mp4",
     category: "Short Form",
     vertical: true,
-    caption: "<b>Angell K, braid out</b>: a beauty-tutorial short cut to hold attention through to the final reveal.",
-  },
-  {
-    videoUrl:
-      "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/Don't%20just%20pay%20and%20leave.mp4",
-    category: "Short Form",
-    vertical: true,
-    caption: "<b>Don't just pay and leave</b>: a hook-first short that stops the scroll in the opening line.",
-  },
-  {
-    videoUrl:
-      "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/First%20cleaning%20in%203%20days.mp4",
-    category: "Short Form",
-    vertical: true,
-    caption: "<b>First cleaning in 3 days</b>: a fast-paced short cut to turn a service offer into bookings.",
+    caption: "<b>Michael, Fraud Watch 360</b>: a launch short that drove 50+ sign-ups for a brand-new startup.",
   },
   {
     videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/Airbnb%20Blueprint%20-%209x16.mp4",
@@ -158,24 +144,6 @@ const MORE_WORK = [
     caption: "<b>People Buy to Save Time</b>: a vertical short on why saving time sells.",
   },
   {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/New%20portfolio/Personal%20Brands%20-%209x16.mp4",
-    category: "Short Form",
-    vertical: true,
-    caption: "<b>Personal Brands</b>: a vertical short on building a personal brand.",
-  },
-  {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/ram-construction.mp4",
-    category: "Short Form",
-    vertical: true,
-    caption: "<b>RAM Construction</b>: a site-showcase short cut to make on-the-ground project progress look sharp and shareable.",
-  },
-  {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/personal-brand.mp4",
-    category: "Short Form",
-    vertical: true,
-    caption: "<b>Personal brand</b>: a short built to make a founder look credible on camera.",
-  },
-  {
     videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/coconu-talking-head.mp4",
     category: "Short Form",
     vertical: true,
@@ -194,10 +162,48 @@ const MORE_WORK = [
     caption: "<b>Brand sample reel</b>: a short-form cut built to stop the scroll.",
   },
   {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/fraud-watch-360.mp4",
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/Let's%20do%20this%20braid%20out.mp4",
     category: "Short Form",
     vertical: true,
-    caption: "<b>Michael, Fraud Watch 360</b>: a launch short that drove 50+ sign-ups for a brand-new startup.",
+    caption: "<b>Angell K, braid out</b>: a beauty-tutorial short cut to hold attention through to the final reveal.",
+  },
+  {
+    videoUrl:
+      "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/Don't%20just%20pay%20and%20leave.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>Don't just pay and leave</b>: a hook-first short that stops the scroll in the opening line.",
+  },
+  {
+    videoUrl:
+      "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/First%20cleaning%20in%203%20days.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>First cleaning in 3 days</b>: a fast-paced short cut to turn a service offer into bookings.",
+  },
+  {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/ram-construction.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>RAM Construction</b>: a site-showcase short cut to make on-the-ground project progress look sharp and shareable.",
+  },
+  {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/make-gains.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>Make Gains</b>: a fitness short cut to keep energy high and viewers watching.",
+  },
+  {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/seizure-prevention.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>Seizure Prevention</b>: a health explainer short that makes a serious topic easy to follow.",
+  },
+  {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/steve-harvey.mp4",
+    category: "Short Form",
+    vertical: true,
+    caption: "<b>Steve Harvey</b>: a short-form cut that rides a big personality for maximum retention.",
   },
   {
     videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/ready-force.mp4",
@@ -212,22 +218,16 @@ const MORE_WORK = [
     caption: "<b>Delta House</b>: a short-form brand cut.",
   },
   {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/steve-harvey.mp4",
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/New%20portfolio/Personal%20Brands%20-%209x16.mp4",
     category: "Short Form",
     vertical: true,
-    caption: "<b>Steve Harvey</b>: a short-form cut that rides a big personality for maximum retention.",
+    caption: "<b>Personal Brands</b>: a vertical short on building a personal brand.",
   },
   {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/make-gains.mp4",
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/personal-brand.mp4",
     category: "Short Form",
     vertical: true,
-    caption: "<b>Make Gains</b>: a fitness short cut to keep energy high and viewers watching.",
-  },
-  {
-    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/seizure-prevention.mp4",
-    category: "Short Form",
-    vertical: true,
-    caption: "<b>Seizure Prevention</b>: a health explainer short that makes a serious topic easy to follow.",
+    caption: "<b>Personal brand</b>: a short built to make a founder look credible on camera.",
   },
   {
     videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/realtor-tip.mp4",

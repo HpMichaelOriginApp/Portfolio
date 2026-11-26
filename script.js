@@ -237,6 +237,25 @@ const MORE_WORK = [
   },
 ];
 
+/* ------------------------------------------------------------
+   ANIMATION = 2D / cartoon-style animation pieces, shown in their own
+   showcase section so clients interested in animation spot it at a glance.
+   Same shape as FEATURED/MORE_WORK. The section auto-hides while empty.
+------------------------------------------------------------ */
+const ANIMATION = [
+  {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/EP03_Na_Blessing_Be_That_FINAL_16x9_1920x1080.mp4",
+    category: "Animation",
+    caption: "<b>Na Blessing Be That (Ep. 03)</b>: an original 2D animated episode, character design, animation, kinetic captions, and edit.",
+  },
+  {
+    videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/EP03_Na_Blessing_Be_That_FINAL_9x16_1080x1920.mp4",
+    category: "Animation",
+    vertical: true,
+    caption: "<b>Na Blessing Be That, vertical cut</b>: the same episode reframed 9:16 for Shorts, Reels, and TikTok.",
+  },
+];
+
 /* ============================================================
    Below this line: rendering logic. No need to edit.
    ============================================================ */
@@ -669,6 +688,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Two aspect-based grids: 16:9 pieces (wide row) first, 9:16 reels below.
   renderGrid("work-long-grid", FEATURED);
   renderGrid("work-short-grid", MORE_WORK);
+
+  // Animation showcase (its own section); hide it if there's nothing to show.
+  renderGrid("animation-grid", ANIMATION);
+  const animSection = document.getElementById("animation");
+  if (animSection) animSection.hidden = ANIMATION.length === 0;
 
   document.querySelectorAll(".filter").forEach(wireFilter);
   wireCtas();

@@ -699,6 +699,16 @@ section { padding-block: clamp(4.5rem, 11vw, 9rem); position: relative; }
 @media (min-width: 820px) { .grid--testi { grid-template-columns: repeat(2, 1fr); align-items: start; } }
 .grid--testi .tile { width: 100%; max-width: 560px; }
 .grid--testi .facade--vertical { max-width: 300px; margin-inline: auto; }
+
+/* Animation showcase: the landscape episode and its vertical cut, side by side,
+   the wide tile given more room, each centered in its column. Stacks on mobile. */
+.grid--animation { grid-template-columns: 1fr; justify-items: center; gap: clamp(1.4rem, 4vw, 2.4rem); }
+@media (min-width: 820px) {
+  .grid--animation { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); align-items: start; }
+}
+.grid--animation .tile { width: 100%; max-width: 680px; }
+.grid--animation .facade--vertical { max-width: 300px; margin-inline: auto; }
+.animation__cta { margin-top: clamp(1.8rem, 4vw, 2.6rem); text-align: center; }
 /* While a tile is playing, hide its poster + controls so only the video shows */
 .facade.is-playing .facade__poster,
 .facade.is-playing .facade__shade,

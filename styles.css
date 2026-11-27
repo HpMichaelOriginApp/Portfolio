@@ -944,6 +944,79 @@ section { padding-block: clamp(4.5rem, 11vw, 9rem); position: relative; }
 @media (min-width: 760px) { .creds__small { margin-inline: 0; } }
 
 /* ============================================================
+   FEATURED BY — external recognition card (backs up the "Hired" stat)
+   ============================================================ */
+.feature {
+  max-width: 860px;
+  margin-inline: auto;
+  padding: clamp(2.6rem, 7vw, 4rem) var(--gutter) 0;
+}
+.feature-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.6rem, 4.5vw, 2.4rem);
+  overflow: hidden;
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(460px circle at 12% -10%, rgba(var(--glow), 0.16), transparent 62%);
+  pointer-events: none;
+}
+.feature-card > * { position: relative; z-index: 1; }
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--glow), 0.5);
+  box-shadow: 0 24px 60px -28px rgba(var(--glow), 0.6);
+}
+.feature-card__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+}
+.feature-card__tag svg { width: 16px; height: 16px; }
+.feature-card__quote {
+  margin: 1rem 0 1.2rem;
+  font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--text);
+}
+.feature-card__src {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.feature-card__src b { color: var(--text); font-weight: 650; }
+.feature-card__link {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--accent);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.feature-card__link svg { width: 16px; height: 16px; }
+.feature-card:hover .feature-card__link { text-shadow: 0 0 18px rgba(var(--glow), 0.7); }
+
+/* ============================================================
    ABOUT
    ============================================================ */
 .about {

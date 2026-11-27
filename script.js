@@ -246,13 +246,13 @@ const ANIMATION = [
   {
     videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/EP03_Na_Blessing_Be_That_FINAL_16x9_1920x1080.mp4",
     category: "Animation",
-    caption: "<b>Na Blessing Be That (Ep. 03)</b>: an original 2D animated episode, character design, animation, kinetic captions, and edit.",
+    caption: "<b>Episode 03</b>: the latest full episode, written, animated, and edited end to end.",
   },
   {
     videoUrl: "https://pub-ecf6d65a25964c34a5b0f7870ddc40db.r2.dev/EP03_Na_Blessing_Be_That_FINAL_9x16_1080x1920.mp4",
     category: "Animation",
     vertical: true,
-    caption: "<b>Na Blessing Be That, vertical cut</b>: the same episode reframed 9:16 for Shorts, Reels, and TikTok.",
+    caption: "<b>Episode 03, vertical cut</b>: the same episode reframed 9:16 for Shorts, Reels, and TikTok.",
   },
 ];
 
